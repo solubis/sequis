@@ -1,0 +1,42 @@
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation" ng-controller="HeaderController">
+
+  <div class="navbar-header">
+
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <a class="navbar-brand" href="#">Sequis</a>
+  </div>
+
+  <div class="navbar-collapse collapse">
+
+    <ul class="nav navbar-nav">
+      <li ng-repeat="entry in navbarEntries" ng-show="user" ng-class="{ active: entry.isActive }">
+        <a test href="#{{entry.link}}">{{entry.title}}</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right" ng-hide="user">
+      <li><a test href="#/signup">Signup</a></li>
+      <li><a test href="#/signin">Signin</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right" ng-show="user">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          {{ profile.name }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a test href="" ng-click="logout()">Signout</a></li>
+          <li class="divider"></li>
+          <li><a test href="#">Preferences</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+
+</div>

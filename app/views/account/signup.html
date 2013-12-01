@@ -1,0 +1,16 @@
+<form class="form-signin" ng-controller="AccountController as ctrl">
+
+  <h2 class="form-signin-heading">Please Sign Up</h2>
+
+  <input class="form-control top" id="name" type="text" name="name" placeholder="Full name" ng-model="ctrl.name">
+  <input class="form-control middle" id="email" type="text" name="email" placeholder="Email" ng-model="ctrl.email">
+  <input class="form-control bottom" id="password" type="password" name="password" placeholder="Password" ng-model="ctrl.password">
+  <button type="submit" class="btn btn-primary" ng-click="ctrl.signUp()">Sign up</button>
+  &nbsp;or&nbsp;<a href="#/signin" class="show-login">Sign In</a>
+
+  </br></br></br>
+
+  <status></status>
+
+</form>
+
