@@ -1,0 +1,76 @@
+<div ng-controller="EquipmentFormController" ng-init="initData()">
+
+  <tabset>
+    <tab heading="Equipment">
+      <form role="form">
+
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select class="form-control" id="type" ng-model="record.type">
+            <option ng-repeat="type in types">{{ type.name }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="serial">Serial number</label>
+          <input type="text" class="form-control" ng-model="record.serial" id="serial" placeholder="Serial number">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea type="tel" class="form-control" ng-model="record.description" id="description"
+                    placeholder="Enter your remarks if you have any"></textarea>
+        </div>
+
+      </form>
+    </tab>
+    <tab heading="Maintenance">
+
+      <div class="panel panel-info">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+          Maintenance Schedules&nbsp;&nbsp;
+          <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#panelBody" ng-click="clearForm()">Add new</button>
+        </div>
+
+        <div id="panelBody" class="collapse">
+          <div class="panel-body">
+
+            <form class="form-inline" role="form">
+              <div class="form-group">
+                <label class="sr-only" for="maintenanceDescription">Description</label>
+                <input type="text" class="form-control" id="maintenanceDescription" ng-model="schedule.description" placeholder="Enter description">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="maintenanceDate">Date</label>
+                <input type="text" class="form-control" datepicker-popup="{{format}}" id="maintenanceDate" ng-model="schedule.date"
+                       is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions"
+                       date-disabled="disabled(date, mode)" ng-required="false" close-text="Close"
+                       placeholder="Select date for maintenance"/>
+              </div>
+
+              <button class="btn btn-default" ng-click="saveSchedule()">Save</button>
+              &nbsp;<a data-toggle="collapse" data-target="#panelBody">Cancel</a>
+            </form>
+
+          </div>
+        </div>
+
+
+        <!-- List group -->
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="schedule in record.schedules"><strong>{{ schedule.date }}</strong> <p>{{schedule.description }} </p> </li>
+        </ul>
+
+      </div>
+
+
+    </tab>
+  </tabset>
+
+
+  <button class="btn btn-default" ng-click="create()" ng-hide="id">Accept</button>
+  &nbsp;<a href="#/equipment">Back to list</a>
+
+</div>
+

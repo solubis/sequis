@@ -10,7 +10,7 @@ angular.module('app.common.account')
 
       $timeout(function () {
         $rootScope.hideAlert();
-      }, 2000);
+      }, 3000);
     };
 
     $rootScope.hideAlert = function () {
@@ -92,7 +92,7 @@ angular.module('app.common.account')
         console.log(error);
       });
 
-      $location.path('/');
+      $location.path('/equipment/-J9st7sbcGDFpN8sDBzL');
     });
 
     service.login = function (email, password) {

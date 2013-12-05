@@ -10,8 +10,8 @@ angular.module('app.common.header', ['app.common.account'])
 
     $scope.navbarEntries = [
       {
-        "title": "Contacts",
-        "link": "/contacts"
+        "title": "Equipment",
+        "link": "/equipment"
       }
     ];
 

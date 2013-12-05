@@ -177,7 +177,7 @@ describe('service', function() {
       });
 
       describe('#createProfile', function() {
-         it('should be the createProfile service',
+         it('should be the createProfile maintenance',
             inject(function(loginService, profileCreator) {
                expect(loginService.createProfile).toBe(profileCreator);
             })

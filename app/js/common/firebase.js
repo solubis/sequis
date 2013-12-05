@@ -4,4 +4,4 @@ angular.module('app.common.firebase', ['firebase'])
   .run(function ($rootScope, FBURL) {
     $rootScope.FBURL = FBURL;
   })
-  .constant('FBURL', 'https://solubis.firebaseio.com');
+  .constant('FBURL', 'https://sequis.firebaseio.com');
