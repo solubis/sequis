@@ -43,10 +43,9 @@ body {
     border-radius: 0;
 }
 
-.tab-content {
-    padding-top: 20px;
-}
-
+.badge-success{background-color: #31b94c;}
+.badge-info{background-color: #3568b9;}
+.badge-important{background-color: #d6661e;}
 
 .animate-enter,
 .animate-leave

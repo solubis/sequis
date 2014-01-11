@@ -2,47 +2,65 @@
 
 angular.module('app.equipment')
 
-  .factory('EquipmentService', function ($rootScope, Firebase, angularFireCollection, angularFire) {
+  .factory('EquipmentService', function ($rootScope, DataService) {
 
-    return {
-      collection: function (callback) {
-        var ref = this.ref();
-        return angularFireCollection(ref, callback);
-      },
-      ref: function () {
-        return new Firebase($rootScope.FBURL).child('equipment');
-      },
-      findById: function (id, scope, name) {
-        var record = this.ref().child(id);
-        angularFire(record, scope, name);
-      },
-      create: function (record, callback) {
-        return this.ref().push(record, callback);
-      },
-      remove: function (id) {
-        var record = this.ref().child(id);
-        record.remove();
-      },
-      types: function(callback){
-        var ref = new Firebase($rootScope.FBURL).child('equipmentType');
+    var dao = new DataService('Equipment');
 
-        var list = angularFireCollection(ref, function(data){
-          var empty = !data.hasChildren();
-
-          if (empty){
-            console.log("Empty collection");
-
-            ref.push().set({name:"Tank"});
-            ref.push().set({name:"BCD"});
-            ref.push().set({name:"Torch"});
-          }
-
-          if (callback){
-            callback();
-          }
-        });
-
-        return list;
-      }
+    dao.types = function () {
+      var list = [
+        {name:""},
+        {name: 'BCD'},
+        {name: 'Torch'},
+        {name: 'Reg'}
+      ];
+      return list;
     };
+
+    dao.statuses = function () {
+      var list = [
+        {name:""},
+        {name: 'New'},
+        {name: 'Used'},
+        {name: 'Maintenanced'},
+        {name: 'To Sell'},
+        {name: 'Broken'},
+      ];
+      return list;
+    };
+
+    dao.maintenanceTypes = function () {
+      var list = [
+        {name:""},
+        {name: 'Visual Inspection'},
+        {name: 'Hydro Test'},
+        {name: 'Regulator Quick Service'},
+        {name: 'Regulator Full Service'},
+        {name: 'Repair'},
+        {name: 'Custom'},
+        {name: 'Check Inventory'}
+      ];
+      return list;
+    };
+
+    dao.persons = function () {
+      var list = [
+        {name:""},
+        {name: 'Samaty'},
+        {name: 'Mr. Butla'},
+        {name: 'Scubatec'},
+        {name: 'Hazem'}
+      ];
+      return list;
+    };
+
+    dao.periods = [
+        {name:""},
+        {name: 'Year'},
+        {name: 'Month'},
+        {name: 'Week'},
+        {name: 'Day'}
+      ];
+
+    return dao;
+
   });

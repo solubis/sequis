@@ -2,13 +2,10 @@
 
 angular.module('app', [
     'app.equipment',
-    'app.maintenance',
-    'app.common.firebase',
-    'app.common.account',
+
+    'app.common.localstore',
     'app.common.header',
     'app.common.directives',
-
-    'ui.bootstrap',
 
     'ngRoute'
   ])
@@ -21,4 +18,30 @@ angular.module('app', [
       .when('/equipment/create', { templateUrl: 'views/equipment/edit.html', authRequired: true })
       .when('/equipment/:id', { templateUrl: 'views/equipment/edit.html', authRequired: true })
       .otherwise({ redirectTo: '/equipment' });
+  })
+  .run(function ($rootScope, $timeout) {
+    $rootScope.showAlert = function (message) {
+      $rootScope.alert = {text: message};
+      $timeout($rootScope.hideAlert, 3000);
+    };
+
+    $rootScope.hideAlert = function () {
+      $rootScope.alert = null;
+    };
+
+    $rootScope.showInfo = function (message) {
+      $rootScope.info = {text: message};
+      $timeout($rootScope.hideInfo, 2000);
+    };
+
+    $rootScope.hideInfo = function () {
+      $rootScope.info = null;
+    };
+  })
+  .directive('status', function () {
+    return {
+      restrict: "E",
+      replace: true,
+      templateUrl: "views/account/status.html"
+    };
   });

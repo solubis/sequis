@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.common.header', ['app.common.account'])
+angular.module('app.common.header', [])
 
   .controller('HeaderController', function ($scope, $location, accountService) {
 

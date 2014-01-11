@@ -1,76 +1,167 @@
 <div ng-controller="EquipmentFormController" ng-init="initData()">
 
-  <tabset>
-    <tab heading="Equipment">
-      <form role="form">
+  <status></status>
 
-        <div class="form-group">
-          <label for="type">Type</label>
-          <select class="form-control" id="type" ng-model="record.type">
-            <option ng-repeat="type in types">{{ type.name }}</option>
-          </select>
-        </div>
+  <div class="col-sm-5">
+    <div class="panel panel-info">
 
-        <div class="form-group">
-          <label for="serial">Serial number</label>
-          <input type="text" class="form-control" ng-model="record.serial" id="serial" placeholder="Serial number">
-        </div>
-
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea type="tel" class="form-control" ng-model="record.description" id="description"
-                    placeholder="Enter your remarks if you have any"></textarea>
-        </div>
-
-      </form>
-    </tab>
-    <tab heading="Maintenance">
-
-      <div class="panel panel-info">
-        <!-- Default panel contents -->
-        <div class="panel-heading">
-          Maintenance Schedules&nbsp;&nbsp;
-          <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#panelBody" ng-click="clearForm()">Add new</button>
-        </div>
-
-        <div id="panelBody" class="collapse">
-          <div class="panel-body">
-
-            <form class="form-inline" role="form">
-              <div class="form-group">
-                <label class="sr-only" for="maintenanceDescription">Description</label>
-                <input type="text" class="form-control" id="maintenanceDescription" ng-model="schedule.description" placeholder="Enter description">
-              </div>
-              <div class="form-group">
-                <label class="sr-only" for="maintenanceDate">Date</label>
-                <input type="text" class="form-control" datepicker-popup="{{format}}" id="maintenanceDate" ng-model="schedule.date"
-                       is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions"
-                       date-disabled="disabled(date, mode)" ng-required="false" close-text="Close"
-                       placeholder="Select date for maintenance"/>
-              </div>
-
-              <button class="btn btn-default" ng-click="saveSchedule()">Save</button>
-              &nbsp;<a data-toggle="collapse" data-target="#panelBody">Cancel</a>
-            </form>
-
-          </div>
-        </div>
-
-
-        <!-- List group -->
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="schedule in record.schedules"><strong>{{ schedule.date }}</strong> <p>{{schedule.description }} </p> </li>
-        </ul>
-
+      <div class="panel-heading">
+        Equipment details
       </div>
 
+      <div class="panel-body">
+        <form class="form-horizontal" role="form" name="form">
 
-    </tab>
-  </tabset>
+          <div class="form-group">
+            <label class="col-md-3" for="type">Type</label>
+
+            <div class="col-md-9">
+              <input required kendo-drop-down-list id="type" k-data-source="types" k-data-text-field="'name'"
+                     k-data-value-field="'name'" ng-model="record.type">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label required class="col-md-3" for="serial">Serial number</label>
+
+            <div class="col-md-9">
+              <input required type="text" class="form-control" ng-model="record.serial" id="serial"
+                     placeholder="Serial number">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3" for="productionDate">Production Date</label>
+
+            <div class="col-md-9">
+              <input required id="productionDate" kendo-date-picker ng-model="record.productionDate">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3" for="status">Status</label>
+
+            <div class="col-md-9">
+              <input kendo-drop-down-list id="status" k-data-source="statuses" k-data-text-field="'name'"
+                     k-data-value-field="'name'" ng-model="record.status">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3" for="description">Description</label>
+
+            <div class="col-md-9">
+              <textarea type="tel" class="form-control" ng-model="record.description" id="description"
+                        placeholder="Enter your remarks if you have any"></textarea>
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-default" ng-disabled="form.$invalid" ng-click="save()">Accept</button>
+            &nbsp;<a href="#/equipment">Back to list</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
 
 
-  <button class="btn btn-default" ng-click="create()" ng-hide="id">Accept</button>
-  &nbsp;<a href="#/equipment">Back to list</a>
+  </div>
+
+  <div class="col-sm-7">
+    <div class="panel panel-info">
+
+      <div class="panel-heading">
+        Maintenance Tasks&nbsp;&nbsp;
+      </div>
+
+      <div class="panel-body" ng-hide="isFormShowed">
+
+        <span class="badge badge-info ">{{ summary.total }}</span>&nbsp;Total&nbsp;<span class="badge badge-success">{{ summary.done }}</span>&nbsp;Done&nbsp;<span
+          class="badge badge-important">{{ summary.coming }}</span>&nbsp;Comming&nbsp;&nbsp;
+        <button class="btn btn-primary btn-sm pull-right" ng-hide="isFormShowed" ng-click="showForm()">
+          <i class="glyphicon glyphicon-plus-sign"></i>&nbsp;&nbsp;Add new schedule
+        </button>
+      </div>
+
+      <div id="panelBody" class="collapse">
+        <div class="panel-body">
+
+          <form class="form-horizontal" role="form" name="scheduleForm">
+
+            <div class="form-group">
+              <label class="col-md-3" for="maintenanceType">Type</label>
+
+              <div class="col-md-9">
+                <input required kendo-drop-down-list id="maintenanceType" k-data-source="maintenanceTypes"
+                       k-data-text-field="'name'"
+                       k-data-value-field="'name'" ng-model="schedule.type">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3" for="maintenanceDate">Date</label>
+
+              <div class="col-md-9">
+                <input id="maintenanceDate" kendo-date-picker ng-model="schedule.date">
+                <label>
+                  &nbsp;Repeat <input type="checkbox" ng-model="schedule.repeat">
+                </label>
+
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="schedule.repeat">
+              <label class="col-md-3" for="repeatDetails">Repeat every</label>
+
+              <div class="col-md-9" id="repeatDetails">
+                <input kendo-numeric-text-box k-decimals="" k-format="n" id="experience" placeholder="Every"
+                       ng-model="schedule.repeatEvery">
+                <input kendo-drop-down-list k-data-source="dao.periods" k-data-text-field="'name'"
+                       k-data-value-field="'name'" ng-model="schedule.repeatPeriod">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3" for="responsible">Responsible</label>
+
+              <div class="col-md-9">
+                <input required kendo-drop-down-list id="responsible" k-data-source="persons" k-data-text-field="'name'"
+                       k-data-value-field="'name'" ng-model="schedule.person">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3" for="maintenanceDescription">Description</label>
+
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="maintenanceDescription" ng-model="schedule.description"
+                       placeholder="Enter description">
+              </div>
+            </div>
+
+            <button class="btn btn-default" ng-disabled="scheduleForm.$invalid" ng-click="saveSchedule()">Add</button>
+            &nbsp;&nbsp;<a class="btn btn-default" ng-click="hideForm()">Close</a>
+
+          </form>
+
+        </div>
+      </div>
+
+      <div class="list-group">
+        <a href="" class="list-group-item" ng-repeat="schedule in record.schedules track by $index"
+           ng-click="showInfo('Fucking sraking' + $index)">
+
+          <p class="label label-info">{{schedule.type }} </p>&nbsp;on
+          <span class="text-primary">{{ schedule.date   }}</span>&nbsp;by
+          <span class="text-danger">{{schedule.person }} </span>
+
+        </a>
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
