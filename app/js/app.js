@@ -2,24 +2,29 @@
 
 angular.module('app', [
     'app.equipment',
+    'app.tasks',
+    'app.types',
 
     'app.common.localstore',
-    'app.common.header',
     'app.common.directives',
+    'app.common.services',
 
-    'ngRoute'
+    'ngRoute',
+    'ngAnimate'
   ])
+
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', { templateUrl: 'views/default.html' })
-      .when('/signin', { templateUrl: 'views/account/signin.html' })
-      .when('/signup', { templateUrl: 'views/account/signup.html' })
-      .when('/equipment', { templateUrl: 'views/equipment/list.html', authRequired: true })
-      .when('/equipment/create', { templateUrl: 'views/equipment/edit.html', authRequired: true })
-      .when('/equipment/:id', { templateUrl: 'views/equipment/edit.html', authRequired: true })
-      .otherwise({ redirectTo: '/equipment' });
+      .when('/', { templateUrl: 'views/types.html' })
+      .when('/signin', { templateUrl: 'views/signin.html' })
+      .when('/signup', { templateUrl: 'views/signup.html' })
+      .when('/tasks', { templateUrl: 'views/tasks.html', authRequired: true })
+      .when('/types', { templateUrl: 'views/types.html', authRequired: true })
+      .when('/equipment', { templateUrl: 'views/equipment.html', authRequired: true })
+      .otherwise({ redirectTo: '/types' });
   })
-  .run(function ($rootScope, $timeout) {
+
+  .run(function ($rootScope, $document, $timeout) {
     $rootScope.showAlert = function (message) {
       $rootScope.alert = {text: message};
       $timeout($rootScope.hideAlert, 3000);
@@ -37,11 +42,25 @@ angular.module('app', [
     $rootScope.hideInfo = function () {
       $rootScope.info = null;
     };
+
+
   })
+
+  .controller('MenuController', function ($scope, $location, accountService) {
+
+    $scope.logout = function () {
+      accountService.logout('/signin');
+    };
+
+    $scope.$on('$routeChangeSuccess', function () {
+    });
+
+  })
+
   .directive('status', function () {
     return {
       restrict: "E",
       replace: true,
-      templateUrl: "views/account/status.html"
+      templateUrl: "views/status.html"
     };
   });

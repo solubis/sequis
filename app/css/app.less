@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(assets/fonts/roboto-light.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(assets/fonts/roboto-regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(assets/fonts/roboto-bold.woff) format('woff');
+}
+
+html,
+body {
+  font-size: 18px;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Roboto";
+  font-weight: 300;
+  margin: 0px;
+  padding: 0px;
+}
+
+.main.container{
+  padding-top: 75px;
+}
+
+i.hidden-button {
+  display: none !important;
+  float: right !important;
+}
+
+ul.list {
+  height: 20em;
+  margin-left: 0em !important;
+  overflow-x: visible;
+  overflow-y: scroll;
+  &.selection{
+    .item{
+      &.active{
+        background-color: #6ECFF5 !important;
+      }
+    }
+  }
+  .item {
+    &:hover {
+      i.hidden-button {
+        display: block !important;
+        opacity: 0.20;
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.label {
+  &.focus {
+    cursor: pointer;
+  }
+}
+
+.item.search{
+  width: 10em;
+}

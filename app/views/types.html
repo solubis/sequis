@@ -1,0 +1,63 @@
+<div class="ui page grid" ng-controller="TypesController">
+
+  <div class="ui stackable row">
+    <div class="column">
+      <div class="ui labeled icon button" ng-click="create()">
+        Create New Type
+        <i class="add icon"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui two column stackable row">
+    <div class="column">
+
+      <ul class="ui divided segment selection list">
+
+        <li class="item" ng-repeat="item in list">
+
+          <div class="ui grid">
+            <div class="ui row">
+              <div class="four wide column">
+                <img class="ui small circular image" ng-src="assets/images/equipment/{{ item.icon }}.jpg" >
+              </div>
+              <div class="eleven wide column">
+                <div class="content">
+
+                  <a class="header" ng-click="select(item)">{{ item.name }}</a>
+
+                  <div class="description">{{ item.description }}</div>
+                </div>
+              </div>
+              <div class="one wide column">
+                <i class="right icon remove hidden-button" ng-click="remove($index)"></i>
+              </div>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="column">
+      <div class="ui fluid form segment">
+        <h3 class="ui header">Equipment Type</h3>
+
+        <div class="field">
+          <label>Name</label>
+          <input placeholder="Name" type="text" class="first" ng-model="item.name">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea type="text" ng-model="item.description"></textarea>
+        </div>
+        <div class="ui buttons">
+          <div class="ui button">Cancel</div>
+          <div class="or"></div>
+          <div class="ui blue button" ng-click="save()">Save</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

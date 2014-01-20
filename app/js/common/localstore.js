@@ -2,10 +2,7 @@
 
 angular.module('app.common.localstore', ['angular-local-storage'])
 
-/*********************** Service ****************************/
-
-
-  .factory('accountService', function ($rootScope, $location, storage) {
+  .factory('AccountService', function ($rootScope, $location, storage) {
     var service = {};
 
     service.logout = function (redirect) {
@@ -55,31 +52,12 @@ angular.module('app.common.localstore', ['angular-local-storage'])
     return service;
   })
 
-
-/******************* Controller  ***************************/
-
-
   .controller('AccountController', function ($rootScope, accountService) {
 
     this.email = null;
     this.password = null;
     this.user = null;
-
-    this.login = function () {
-      accountService.login(this.email, this.password);
-    };
-
-    this.logout = function () {
-      accountService.logout();
-    };
-
-    this.signUp = function () {
-      accountService.signUp(this.name, this.email, this.password);
-    };
-
-    this.isLoggedIn = function () {
-      return accountService.isLoggedIn();
-    };
+    this.service = accountService;
 
   })
 
@@ -106,10 +84,12 @@ angular.module('app.common.localstore', ['angular-local-storage'])
       }
     };
 
-    dao.prototype.getNextId = function () {
-      this.identity++;
+    dao.prototype.all = function(){
+      return $rootScope[this.tableName];
+    };
 
-      return this.identity;
+    dao.prototype.getNextId = function () {
+      return ++this.identity;
     };
 
     dao.prototype.find = function (id) {
@@ -137,22 +117,26 @@ angular.module('app.common.localstore', ['angular-local-storage'])
       return -1;
     };
 
-    dao.prototype.collection = function (scope, name) {
+    dao.prototype.setCollection = function (scope, name) {
       scope[name] = $rootScope[this.tableName];
     };
 
-    dao.prototype.getById = function (id, scope, name) {
+    dao.prototype.setRecord = function (id, scope, name) {
       scope[name] = this.find(id);
     };
 
     dao.prototype.create = function (record, callback) {
       record.Id = this.getNextId();
       this.data.push(record);
-      callback();
+      if (typeof callback === "function") {
+        callback();
+      }
     };
 
     dao.prototype.update = function (record, callback) {
-      callback();
+      if (typeof callback === "function") {
+        callback();
+      }
     };
 
     dao.prototype.remove = function (id, callback) {
@@ -162,8 +146,12 @@ angular.module('app.common.localstore', ['angular-local-storage'])
         this.data.splice(index, 1);
       }
 
-      callback();
+      if (typeof callback === "function") {
+        callback();
+      }
     };
+
+    storage.clearAll();
 
     return dao;
   }

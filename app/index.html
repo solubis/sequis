@@ -1,45 +1,105 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>My AngularJS App</title>
+  <!-- Standard Meta -->
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
-  <link rel="stylesheet" href="css/app.css"/>
+  <title>Sequis - Semanti UI</title>
+
+  <link rel="stylesheet" type="text/css" href="lib/semantic/semantic.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
+
 </head>
 
 <body ng-app="app">
 
-<div ng-include="'views/header.html'"></div>
 
-<div class="container">
+<!--------------------- Menu --------------------->
+
+
+<div class="ui fixed inverted blue main menu">
+
+  <a class="launch item" id="sidebar-toggle">
+    <i class="large icon list layout"></i>
+  </a>
+
+  <div class="title item">
+    <b>Sequis:</b> Dive Center
+  </div>
+
+  <div class="right menu">
+
+    <div class="item search">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search icon"></i>
+      </div>
+    </div>
+
+    <div class="ui dropdown item">
+       <i class="icon settings"></i>
+
+      <div class="menu">
+        <a class="item"><i class="edit icon"></i> Edit Profile</a>
+        <a class="item"><i class="globe icon"></i> Choose Language</a>
+        <a class="item"><i class="settings icon"></i> Account Settings</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-------------------- Sidebar ---------------->
+
+<div class="ui red vertical demo sidebar selection menu">
+  <a class="item">
+    <i class="home icon"></i>
+    Home
+  </a>
+  <a href="#/types" class="active item">
+    <i class="setting icon"></i>
+    Types
+  </a>
+  <a href="#/equipment" class="item">
+    <i class="wrench icon"></i>
+    Equipment
+  </a>
+  <a href="#/tasks" class="item">
+    <i class="tasks icon"></i>
+    Tasks
+  </a>
+</div>
+
+<div class="main container">
   <ng-view></ng-view>
 </div>
 
-<!-- Scripts -->
-<!--script src="lib/everlive.all.min.js"></script-->
 
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery-address/test/jquery.address-1.6.min.js"></script>
+<script src="lib/semantic/semantic.js"></script>
 
-<script src="lib/jquery/jquery.js"></script>
+<!-------------- Angular Scripts -------------->
 
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-cookies/angular-cookies.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
 <script src="lib/angular-local-storage/src/angular-local-storage.js"></script>
 
-<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<!---------- Application Scripts -------------->
 
 <script src="js/app.js"></script>
-
 <script src="js/common/localstore.js"></script>
-<script src="js/common/header.js"></script>
 <script src="js/common/directives.js"></script>
+<script src="js/common/services.js"></script>
 
-<script src="js/equipment/controllers.js"></script>
-<script src="js/equipment/services.js"></script>
+
+<script src="js/types.js"></script>
+<script src="js/tasks.js"></script>
+<script src="js/equipment.js"></script>
 
 </body>
 </html>

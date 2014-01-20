@@ -1,0 +1,12 @@
+<div class="popover">
+  <div class="arrow"></div>
+  <h3 class="popover-title" >{{ title }}</h3>
+  <div class="popover-content">
+    <form name="popoverForm">
+      <div class="form-actions">
+        <button type="button" class="btn btn-danger" ng-click="$hide()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="popover.saved=true;$hide()">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
