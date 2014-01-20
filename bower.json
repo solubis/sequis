@@ -2,7 +2,6 @@
   "name": "sequis",
   "version": "1.0.0",
   "dependencies": {
-    "json3": "~3.2.4",
     "jquery": "~2.0.0",
     "angular": "~1.2.0",
     "angular-resource": "~1.2.0",
@@ -11,7 +10,6 @@
     "angular-route": "~1.2.0",
     "angular-loading-bar": "~0.1.1",
     "angular-ui-router": "~0.2.7",
-    "jquery-address": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",
