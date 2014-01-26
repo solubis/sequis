@@ -1,0 +1,17 @@
+<div class="item" ng-click="select()">
+
+    <div class="ui stripe" ng-style="{'background-color': stripe}" ng-show="stripe"></div>
+    <div class="ui corner label small" ng-style="{'border-color': corner}" ng-show="corner"></div>
+
+    <div class="content">
+        <a class="header">{{ title }}</a>
+
+        <div class="description">{{ description }}</div>
+    </div>
+
+    <div style="height:1em">
+        <span style="font-size: 0.7em;color:rgba(0,0,0,0.4);">{{ footer }}</span>
+        <i class="right icon close hidden-button" ng-click="remove()" ng-if="showRemove"></i>
+        <i class="right icon setting hidden-button" ng-click="setting()" ng-if="showSetting"></i>
+    </div>
+</div>

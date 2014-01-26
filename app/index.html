@@ -2,83 +2,105 @@
 <html>
 <head>
 
-  <!-- Standard Meta -->
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Sequis - Semanti UI</title>
+    <title>Sequis - Semantic UI</title>
 
-  <link rel="stylesheet" type="text/css" href="lib/semantic/semantic.css">
-  <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="lib/semantic/semantic.css">
+    <link rel="stylesheet" type="text/css" href="lib/toaster/toaster.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
 
 </head>
 
 <body ng-app="app">
 
 
+<!-------------------- Toaster -------------------->
+
+
+<toaster></toaster>
+
+
+<!-------------------- Modal -------------------->
+
+
+<modal></modal>
+
+
 <!--------------------- Menu --------------------->
 
 
-<div class="ui fixed inverted blue main menu">
+<div class="ui fixed inverted black  menu">
 
-  <a class="launch item" id="sidebar-toggle">
-    <i class="large icon list layout"></i>
-  </a>
+    <a class="launch item" id="sidebar-toggle">
+        <i class="icon list layout"></i>
+    </a>
 
-  <div class="title item">
-    <b>Sequis:</b> Dive Center
-  </div>
-
-  <div class="right menu">
-
-    <div class="item search">
-      <div class="ui icon input">
-        <input type="text" placeholder="Search...">
-        <i class="search icon"></i>
-      </div>
+    <div class="item">
+        Equipment types
     </div>
 
-    <div class="ui dropdown item">
-       <i class="icon settings"></i>
+    <div class="right menu">
 
-      <div class="menu">
-        <a class="item"><i class="edit icon"></i> Edit Profile</a>
-        <a class="item"><i class="globe icon"></i> Choose Language</a>
-        <a class="item"><i class="settings icon"></i> Account Settings</a>
-      </div>
+        <!--div class="item search">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search icon"></i>
+            </div>
+        </div-->
+
+        <div class="ui dropdown item" ng-model="action">
+            <i class="icon settings"></i>
+
+            <div class="menu">
+                <a class="item" data-value="0"><i class="edit icon"></i> Edit Profile</a>
+                <a class="item" data-value="1"><i class="globe icon"></i> Choose Language</a>
+                <a class="item" data-value="2"><i class="settings icon"></i> Account Settings</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-------------------- Sidebar ---------------->
 
-<div class="ui red vertical demo sidebar selection menu">
-  <a class="item">
-    <i class="home icon"></i>
-    Home
-  </a>
-  <a href="#/types" class="active item">
-    <i class="setting icon"></i>
-    Types
-  </a>
-  <a href="#/equipment" class="item">
-    <i class="wrench icon"></i>
-    Equipment
-  </a>
-  <a href="#/tasks" class="item">
-    <i class="tasks icon"></i>
-    Tasks
-  </a>
+<div class="ui black vertical demo sidebar floating  inverted selection menu">
+    <a class="item">
+        <i class="home icon"></i>
+        Home
+    </a>
+    <a href="#/types" class="active item">
+        <i class="setting icon"></i>
+        Types
+    </a>
+    <a href="#/equipment" class="item">
+        <i class="wrench icon"></i>
+        Equipment
+    </a>
+    <a href="#/tasks" class="item">
+        <i class="tasks icon"></i>
+        Tasks
+    </a>
 </div>
 
+
+<!------------ Main CONTENT ----------->
+
+
 <div class="main container">
-  <ng-view></ng-view>
+    <ng-view></ng-view>
 </div>
+
+
+<!-------------------- Scripts -------------------->
 
 
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="lib/semantic/semantic.js"></script>
+<script src="lib/jquery/jquery.nicescroll.min.js"></script>
+<script src="lib/chance/chance.js"></script>
 
 <!-------------- Angular Scripts -------------->
 
@@ -86,7 +108,7 @@
 <script src="lib/angular-cookies/angular-cookies.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
 <script src="lib/angular-animate/angular-animate.js"></script>
-<script src="lib/angular-local-storage/angular-local-storage.js"></script>
+<script src="lib/toaster/toaster.js"></script>
 
 <!---------- Application Scripts -------------->
 

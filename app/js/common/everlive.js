@@ -43,7 +43,7 @@ angular.module('app.common.everlive', [])
         },
         function (error) {
           console.log(JSON.stringify(error));
-          $rootScope.showAlert(JSON.stringify(error));
+          $rootScope.showMessage('error', 'Error',JSON.stringify(error));
           $rootScope.$apply();
         });
     };
@@ -78,7 +78,7 @@ angular.module('app.common.everlive', [])
         },
         function (error) {
           console.log(JSON.stringify(error));
-          $rootScope.showAlert(JSON.stringify(error));
+          $rootScope.showMessage('info', 'Sign Up Error', JSON.stringify(error));
           $rootScope.$apply();
         });
     };
