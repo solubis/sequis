@@ -35,22 +35,21 @@ body {
   padding: 0px;
 }
 .main.container {
-  padding-top: 55px;
+  padding: 40px 40px;
 }
 i.hidden-button {
   display: none !important;
   float: right !important;
 }
 .ui.list {
-  top: 0;
-  bottom: 0;
   overflow-x: visible;
   overflow-y: scroll;
+  bottom: 0;
 }
 .ui.list .item {
   position: relative;
   padding-bottom: 10px !important;
-  padding-left: 25px !important;
+  padding-left: 35px !important;
   padding-right: 25px !important;
 }
 .ui.list .item:hover i.hidden-button {
@@ -79,9 +78,6 @@ a {
 .label.focus {
   cursor: pointer;
 }
-.item.search {
-  width: 10em;
-}
 .ui.corner.label.small {
   font-size: 0.3em;
   z-index: 0;
@@ -99,4 +95,10 @@ a {
 }
 .ui.menu .item:before {
   width: 0px !important;
+}
+.ui.comments .comment .text {
+  font-size: small;
+}
+.ui.input.search input {
+  border-radius: 0;
 }

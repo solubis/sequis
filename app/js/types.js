@@ -6,16 +6,29 @@ angular.module('app.types', [])
 
       var i,
           dao = new DataService('Types'),
+          colorsMenu = [],
           colors = ['rgba(133,187,0,1)', 'rgba(125,54,135,1)', 'rgba(17,120,200,1)', 'rgba(245,138,1,1)', "rgba(39,185,240,1)"];
+
 
       for (i = 0; i < 20; i++) {
         dao.create({
           name: chance.name(),
-          description: chance.paragraph({sentences: 3}),
+          description: chance.sentence(),
           color: colors[Math.floor(Math.random() * colors.length)],
           updated: chance.date({string: true, american: false})
         });
       }
+
+      for (i = 0; i < colors.length; i++) {
+        colorsMenu.push({
+          text: colors[i],
+          value: colors[i],
+          icon: 'unhide',
+          color: colors[i]
+        });
+      }
+
+      $rootScope.colorsMenu = colorsMenu;
 
       return dao;
 

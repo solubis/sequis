@@ -28,7 +28,23 @@ angular.module('app', [
 
     .run(function ($rootScope, $timeout, toaster) {
 
-      $rootScope.message = {text: "Initialize shape"};
+      $rootScope.menu = [
+        {
+          text: 'Edit profile',
+          value: 1,
+          icon: 'edit'
+        },
+        {
+          text: 'Change language',
+          value: 2,
+          icon: 'globe'
+        },
+        {
+          text: 'Settings',
+          value: 3,
+          icon: 'setting'
+        }
+      ];
 
 
       $rootScope.$watch('action', function (value) {

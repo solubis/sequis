@@ -39,7 +39,7 @@ body {
 }
 
 .main.container{
-  padding-top: 55px;
+  padding: 40px 40px;
 }
 
 i.hidden-button {
@@ -48,10 +48,9 @@ i.hidden-button {
 }
 
 .ui.list {
-  top:0;
-  bottom: 0;
   overflow-x: visible;
   overflow-y: scroll;
+  bottom: 0;
 
   &.selection{
     .item{
@@ -63,7 +62,7 @@ i.hidden-button {
   .item {
     position: relative;
     padding-bottom:10px !important;
-    padding-left:25px !important;
+    padding-left:35px !important;
     padding-right: 25px !important;
     &:hover {
       i.hidden-button {
@@ -103,10 +102,6 @@ a {
   }
 }
 
-.item.search{
-  width: 10em;
-}
-
 .ui.corner.label.small {
   font-size: 0.3em;
   z-index:0;
@@ -127,4 +122,12 @@ a {
 
 .ui.menu .item:before {
   width: 0px !important;
+}
+
+.ui.comments .comment .text {
+  font-size: small;
+}
+
+.ui.input.search input{
+  border-radius: 0;
 }

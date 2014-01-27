@@ -9,8 +9,8 @@
     "angular-cookies": "1.2.10",
     "angular-route": "1.2.10",
     "angular-loading-bar": "*",
-    "angular-local-storage": "*",
     "angular-ui-router": "*",
+    "angular-kendo":"*",
     "chance": "*"
   },
   "devDependencies": {

@@ -36,37 +36,52 @@
 <div class="ui fixed inverted black  menu">
 
     <a class="launch item" id="sidebar-toggle">
-        <i class="icon list layout"></i>
+        <i class="icon list layout" style="opacity:1;width: 0.8em"></i>
     </a>
 
     <div class="item">
         Equipment types
     </div>
 
+
+    <div class="item">
+        <div class="ui inverted basic mini button">
+            <i class="icon add sign"></i>
+            Add new type
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="ui inverted basic mini button">
+            <i class="icon hide"></i>
+            Hide something
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="ui inverted basic mini button">
+            <i class="icon search"></i>
+            Search for
+        </div>
+    </div>
+
+
     <div class="right menu">
-
-        <!--div class="item search">
-            <div class="ui icon input">
-                <input type="text" placeholder="Search...">
-                <i class="search icon"></i>
-            </div>
-        </div-->
-
-        <div class="ui dropdown item" ng-model="action">
+        <div dropdown class="ui dropdown item pointing right top" ng-model="action" options="menu">
             <i class="icon settings"></i>
-
-            <div class="menu">
-                <a class="item" data-value="0"><i class="edit icon"></i> Edit Profile</a>
-                <a class="item" data-value="1"><i class="globe icon"></i> Choose Language</a>
-                <a class="item" data-value="2"><i class="settings icon"></i> Account Settings</a>
-            </div>
         </div>
     </div>
 </div>
 
 <!-------------------- Sidebar ---------------->
 
-<div class="ui black vertical demo sidebar floating  inverted selection menu">
+<div class="ui black vertical demo sidebar floating thin inverted selection menu">
+
+    <div class="item">
+        <i class="inverted red circular wrench icon" style="opacity: 1; margin-top: -5px"></i>
+        <div class="header" style="font-size: 1.4em"><b>Sequis</b> </div>
+    </div>
+
     <a class="item">
         <i class="home icon"></i>
         Home
@@ -83,6 +98,13 @@
         <i class="tasks icon"></i>
         Tasks
     </a>
+
+    <div class="item">
+        <div class="ui icon input search">
+            <input type="text" placeholder="Search...">
+            <i class="search icon"></i>
+        </div>
+    </div>
 </div>
 
 

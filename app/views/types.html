@@ -1,131 +1,166 @@
-<div class="ui page grid" ng-controller="TypesController">
+<div class="ui grid" ng-controller="TypesController">
+
+    <div class="six wide column">
+
+        <!--div class="ui labeled small icon blue inverted button" ng-click="create()">
+            Create New Type
+            <i class="plus icon"></i>
+        </div-->
+        <!------------------ List -------------------->
 
 
-    <div class="ui two column row">
-        <div class="column">
+        <div class="ui divided segment selection list">
 
-            <div class="ui row">
-                <div class="column">
-                    <div class="ui labeled small icon blue inverted button" ng-click="create()">
-                        Create New Type
-                        <i class="plus icon"></i>
-                    </div>
-                </div>
-            </div>
-            <!------------------ List -------------------->
-
-
-            <div class="ui divided segment selection list">
-
-                <list-item ng-repeat="item in list"
-                           stripe="item.color"
-                           corner="item.color"
-                           title="item.name"
-                           description="item.description"
-                           footer="item.updated"
-                           select="select($index)"
-                           remove="remove($index)">
-                </list-item>
-
-            </div>
-
-
-            <!------------------ END List -------------------->
+            <list-item ng-repeat="item in list"
+                       stripe="item.color"
+                       corner="item.color"
+                       title="item.name"
+                       description="item.description"
+                       footer="item.updated"
+                       select="select($index)"
+                       remove="remove($index)">
+            </list-item>
 
         </div>
 
-        <div class="column">
 
-            <div class="ui tabular filter selection menu">
-                <a class="item active" tab="type"><i class="small icon inverted circular blue home"></i>&nbsp;Type</a>
-                <a class="item" tab="comments"><i
-                        class="small icon inverted circular blue comment"></i>&nbsp;Comments</a>
-            </div>
+        <!------------------ END List -------------------->
 
-            <!-------------------- Form -------------------->
+    </div>
 
-            <div class="ui active" tab="type">
+    <div class="six wide column">
 
-                <form class="ui fluid form" name="form">
+        <div class="ui tabular filter selection menu">
+            <a class="item active" tab="type"><i class="small icon inverted circular blue home"></i>&nbsp;Type</a>
+            <a class="item" tab="comments"><i
+                class="small icon inverted circular blue time"></i>&nbsp;Activity</a>
+        </div>
 
-                    <div class="field">
-                        <label>Name</label>
-                        <input id="name" placeholder="Name" type="text" class="first" ng-model="item.name">
+        <!-------------------- Form -------------------->
+
+        <div class="ui active" tab="type">
+
+            <form class="ui fluid form" name="form">
+
+                <div class="field">
+                    <label>Name</label>
+                    <input id="name" placeholder="Name" type="text" class="first" ng-model="item.name">
+                </div>
+
+                <div class="field">
+                    <label for="description">Description</label>
+                    <textarea id="description" ng-model="item.description"></textarea>
+                </div>
+
+                <div class="field">
+                    <div dropdown class="ui dropdown item" ng-model="item.color" options="colorsMenu">
+                        <i class="icon unhide" ng-style="{color:item.color}"></i>
                     </div>
+                </div>
 
-                    <div class="field">
-                        <label>Description</label>
-                        <textarea type="text" ng-model="item.description"></textarea>
-                    </div>
-
-                    <!--div class="ui selection dropdown field">
-                        <input type="text" style="display: none;" name="color" value="{{ item.color }}" ng-model="item.color">
-                        <div class="text">{{ item.color }}</div>
-                        <i class="dropdown icon"></i>
-                        <div class="menu ui transition hidden">
-                            <div class="item" data-value="white">White</div>
-                            <div class="item active" data-value="red">Red</div>
-                            <div class="item" data-value="green">Green</div>
-                            <div class="item" data-value="blue">Blue</div>
-                            <div class="item" data-value="black">Black</div>
-                        </div>
-                    </div-->
-
-                    <div class="field">
-                        <label>Color</label>
-                        <input id="color" placeholder="Enter color e.g. red, green, blue, orange..." type="text" ng-model="item.color">
-                    </div>
-
-                    <div>
-                        <div class="ui buttons">
-                            <div class="ui small blue button" ng-class="{disabled: !form.$dirty}" ng-click="save()"
-                                 popup="Click to save">Save
-                            </div>
+                <div>
+                    <div class="ui buttons">
+                        <div class="ui small blue button" ng-class="{disabled: !form.$dirty}" ng-click="save()"
+                             popup="Click to save">Save
                         </div>
                     </div>
+                </div>
 
-                </form>
+            </form>
 
-            </div>
+        </div>
 
-            <!-------------------- END Form -------------------->
+        <!-------------------- END Form -------------------->
 
-            <!-------------------- Comments -------------------->
+        <!-------------------- Activity -------------------->
 
-            <div class="ui piled blue segment" tab="comments">
-
-                <div class="ui comments">
-                    <div class="comment" ng-repeat="item in comments">
-                        <a class="avatar">
-                            <img ng-src="assets/images/people/50/{{ item.photo }}.jpg">
-                        </a>
-
-                        <div class="content">
-                            <a class="author">{{ item.user }}</a>
-
-                            <div class="metadata">
-                                <span class="date">{{ item.updated }}</span>
-                            </div>
-                            <div class="text">
-                                {{ item.comment }}
-                            </div>
-                            <div class="actions" >
-                                <a class="delete" popup="This is not working yet">Delete</a>
-                            </div>
-                        </div>
+        <div class="ui small piled feed segment" tab="comments">
+            <h4 class="ui header">My Activity</h4>
+            <div class="event">
+                <div class="label">
+                    <img src="assets/images/people/35/1.jpg">
+                </div>
+                <div class="content">
+                    <div class="date">
+                        Just moments ago
                     </div>
-
-                    <form class="ui reply form">
-                        <div class="field">
-                            <textarea style="height: 6em; min-height: 6em" ng-model="comment"></textarea>
-                        </div>
-                        <div class="ui fluid blue labeled submit icon button" ng-click="addComment()">
-                            <i class="icon edit"></i> Add Reply
-                        </div>
-                    </form>
+                    <div class="summary">
+                        <a>Sally Poodle</a> added you as a friend
+                    </div>
                 </div>
             </div>
+            <div class="event">
+                <div class="label">
+                    <i class="circular pencil icon"></i>
+                </div>
+                <div class="content">
+                    <div class="date">
+                        3 days ago
+                    </div>
+                    <div class="summary">
+                        You submitted a new post to the page
+                    </div>
+                    <div class="extra text">
+                        I am a dog and I do not know how to make a post
+                    </div>
+                </div>
+            </div>
+            <div class="event">
+                <div class="label">
+                    <i class="circular photo icon"></i>
+                </div>
+                <div class="content">
+                    <div class="date">
+                        3 days ago
+                    </div>
+                    <div class="summary">
+                        <a>Sally Poodle</a> added <a>2 new photos</a> of you
+                    </div>
+                    <div class="extra images">
+                        <img src="assets/images/people/250/1.jpg">
+                        <img src="assets/images/people/250/2.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </div>
+
+    <div class="four wide column">
+        <div class="ui piled blue segment" tab="comments">
+
+            <div class="ui comments">
+                <div class="comment" ng-repeat="item in comments">
+                    <a class="avatar">
+                        <img ng-src="assets/images/people/50/{{ item.photo }}.jpg">
+                    </a>
+
+                    <div class="content">
+                        <a class="author">{{ item.user }}</a>
+
+                        <div class="metadata">
+                            <span class="date">{{ item.updated }}</span>
+                        </div>
+                        <div class="text">
+                            {{ item.comment }}
+                        </div>
+                        <div class="actions">
+                            <a class="delete" popup="This is not working yet">Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="ui reply form">
+                    <div class="field">
+                        <label>
+                            <textarea style="height: 6em; min-height: 6em" ng-model="comment"></textarea>
+                        </label>
+                    </div>
+                    <div class="ui fluid blue labeled submit icon button" ng-click="addComment()">
+                        <i class="icon edit"></i> Add Reply
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

@@ -19,25 +19,48 @@ angular.module('app.common.directives', [])
       };
     })
 
-    .directive('dropdown', function ($timeout) {
+    .directive('dropdown', function ($parse) {
       return {
-        restrict: 'C',
-        link: function (scope, element, attrs) {
-          $timeout(function () {
-            element.dropdown({
-              onChange: function (value) {
-                if (angular.isDefined(attrs.ngModel)) {
-                  scope[attrs.ngModel] = value;
-                  scope.$apply();
-                }
-              }
-            });
-          }, 0);
+        restrict: 'A',
+        require: 'ngModel',
+        controller: function ($scope, $element, $attrs, $transclude) {
+        },
+        link: function (scope, element, attrs, controller) {
+
+          var html = '<div class="menu">',
+              options = scope.$eval(attrs.options),
+              icon = '', color = '';
+
+          for (var i = 0, length = options.length; i < length; i++) {
+
+            if (options[i].color){
+              color = 'style="color:' + options[i].color + ';"';
+            }
+
+            if (options[i].icon) {
+              icon = '<i class="' + options[i].icon + ' icon"'+color+'></i>'
+            }
+
+            html += '<div class="item" data-value="' + options[i].value + '">' + icon + options[i].text + '</div>';
+          }
+
+          html += '</div>';
+
+          element.append(html);
+
+          element.dropdown('setting', {
+            onChange: function (value) {
+              scope.$apply(function () {
+                controller.$setViewValue(value);
+              });
+            }
+          });
         }
-      };
+      }
     })
 
-    .directive('popup', function () {
+    .
+    directive('popup', function () {
       return {
         restrict: "A",
         replace: true,
